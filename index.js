@@ -3,7 +3,7 @@ const createIssue = require('./create-issue');
 const  getJiraCardById  = require('./blocks');
 
 const app = new App({
-  token: "xoxb-7538688100513-7533154306242-LMIru7P9iAHr5xWtAOA2M4PO",
+  token: process.env.token,
   signingSecret: "1a85d77f4f2376ad86b85376d27979d4",
   socketMode: true,
   appToken: "xapp-1-A07F8HEF563-7535920766724-4282a63077c69cd88245b74f3f38b7509819dbda0b0e06dc812758bfcde18af7",
@@ -194,7 +194,7 @@ app.view('jira_ticket_modal', async ({ ack, body, view, client, logger }) => {
     // Message the user
     try {
       await client.conversations.replies({
-        token: "xoxb-7538688100513-7533154306242-LMIru7P9iAHr5xWtAOA2M4PO" ,
+        token: process.env.token ,
         channel: user,
         thread_ts: body['message']['ts'],
         blocks: block

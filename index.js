@@ -100,81 +100,9 @@ app.listen(PORT, () => {
 });
 
 
-function test(){
-  console.log('test')
-}
+const fs = require('fs');
 
-// Unused variable (SonarQube should detect this)
-const unusedVar = "This variable is never used";
-
-// Example of a function with code duplication
-function duplicateFunction() {
-    console.log("This is a duplicated line.");
-    console.log("This is a duplicated line.");
-    return true;
-}
-
-function anotherDuplicateFunction() {
-    console.log("This is a duplicated line.");
-    console.log("This is a duplicated line.");
-    return true;
-}
-
-// Improper error handling (catch block does nothing)
-function errorProneFunction() {
-    try {
-        let a = 1;
-        let b = 0;
-        let c = a / b;  // Division by zero
-    } catch (error) {
-        // Catch block does nothing
-    }
-}
-
-// Function without proper exception handling
-function riskyFunction() {
-    JSON.parse("{ malformed json }");  // This will throw an error
-}
-
-// Cyclomatic complexity issue (too many if-else blocks)
-function complexFunction(n) {
-    if (n === 1) {
-        return "One";
-    } else if (n === 2) {
-        return "Two";
-    } else if (n === 3) {
-        return "Three";
-    } else if (n === 4) {
-        return "Four";
-    } else {
-        return "Unknown number";
-    }
-}
-
-// Inefficient loop
-function inefficientLoop() {
-    for (let i = 0; i < 1000000; i++) {
-        console.log(i);  // This will unnecessarily log a large number of items
-    }
-}
-
-// Hardcoded credentials (Security issue SonarQube should detect)
-const username = "admin";
-const password = "password123";
-
-// Dead code
-function deadCodeFunction() {
-    return;
-    console.log("This line will never be reached.");
-}
-
-module.exports = {
-    duplicateFunction,
-    anotherDuplicateFunction,
-    errorProneFunction,
-    riskyFunction,
-    complexFunction,
-    inefficientLoop,
-    deadCodeFunction
-};
-
+fs.readFile('somefile.txt', 'utf8', (err, data) => {
+    console.log(data);
+    // Missing error handling
+});

@@ -98,3 +98,8 @@ async function refreshAccessToken() {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
+function test(){
+  console.log('test')
+}

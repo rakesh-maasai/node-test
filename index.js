@@ -29,11 +29,6 @@ app.get('/login', (req, res) => {
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
 
-  if (!code) {
-    return res.status(400).send('Authorization code is missing');
-  }
-
-  try {
     const response = await axios.post(TOKEN_URL, qs.stringify({
       grant_type: 'authorization_code',
       code,
@@ -48,10 +43,7 @@ app.get('/callback', async (req, res) => {
     refreshToken = response.data.refresh_token;
 
     res.send('Authorization successful. You can now fetch the knowledge base articles.');
-  } catch (error) {
-    console.error('Error exchanging code for access token:', error.response?.data || error.message);
-    res.status(500).send('Error during authorization');
-  }
+
 });
 
 // Step 3: Fetch knowledge base articles

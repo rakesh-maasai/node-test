@@ -90,3 +90,21 @@ async function refreshAccessToken() {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
+function processOrders(orders) {
+  let total = 0;
+  for (let i = 0; i < orders.length; i++) {
+      let order = orders[i];
+      total += order.amount;
+      // More processing logic...
+  }
+  // More code...
+  return total;
+}
+
+
+function calculateDiscount(price, discount) {
+  // Bug: discount is not used correctly
+  return price * (discount / 100); // Should be (price * discount)
+}

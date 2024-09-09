@@ -200,9 +200,6 @@ app.view('jira_ticket_modal', async ({ ack, body, view, client, logger }) => {
         blocks: block
       });
     }
-    catch (error) {
-      logger.error(error);
-    }
   
   });
     

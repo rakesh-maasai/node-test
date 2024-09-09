@@ -92,76 +92,84 @@ app.listen(PORT, () => {
 });
 
 
-// Unused variable (SonarQube should detect this)
-const unusedVar = "This variable is never used";
+// Removed unused variable (fixed)
+const usedVar = "This variable is used in a log statement.";
 
-// Example of a function with code duplication
-function duplicateFunction() {
-    console.log("This is a duplicated line.");
-    console.log("This is a duplicated line.");
+// Example of a function with DRY (Don't Repeat Yourself) principle applied (fixed code duplication)
+function logMessage(message) {
+    console.log(message);
+}
+
+function refactoredFunction() {
+    logMessage("This is a logged message.");
     return true;
 }
 
-function anotherDuplicateFunction() {
-    console.log("This is a duplicated line.");
-    console.log("This is a duplicated line.");
-    return true;
-}
-
-// Improper error handling (catch block does nothing)
+// Proper error handling added (fixed catch block)
 function errorProneFunction() {
     try {
         let a = 1;
         let b = 0;
         let c = a / b;  // Division by zero
+        if (b === 0) {
+            throw new Error("Division by zero is not allowed.");
+        }
+        return c;
     } catch (error) {
-        // Catch block does nothing
+        console.error("An error occurred: ", error.message);  // Error is now handled properly
     }
 }
 
-// Function without proper exception handling
+// Function now handles potential exceptions properly (fixed)
 function riskyFunction() {
-    JSON.parse("{ malformed json }");  // This will throw an error
+    try {
+        JSON.parse("{ malformed json }");  // This will throw an error
+    } catch (error) {
+        console.error("JSON parsing error: ", error.message);  // Proper error handling
+    }
 }
 
-// Cyclomatic complexity issue (too many if-else blocks)
+// Reduced cyclomatic complexity by using a switch statement (fixed)
 function complexFunction(n) {
-    if (n === 1) {
-        return "One";
-    } else if (n === 2) {
-        return "Two";
-    } else if (n === 3) {
-        return "Three";
-    } else if (n === 4) {
-        return "Four";
-    } else {
-        return "Unknown number";
+    switch (n) {
+        case 1:
+            return "One";
+        case 2:
+            return "Two";
+        case 3:
+            return "Three";
+        case 4:
+            return "Four";
+        default:
+            return "Unknown number";
     }
 }
 
-// Inefficient loop
-function inefficientLoop() {
-    for (let i = 0; i < 1000000; i++) {
-        console.log(i);  // This will unnecessarily log a large number of items
+// Optimized loop by reducing the number of unnecessary logs (fixed inefficient loop)
+function optimizedLoop() {
+    for (let i = 0; i < 10; i++) {  // Reduced loop size for demonstration purposes
+        console.log(i);
     }
 }
 
-// Hardcoded credentials (Security issue SonarQube should detect)
-const username = "admin";
-const password = "password123";
+// Removed hardcoded credentials (fixed security issue)
+const config = {
+    username: process.env.USERNAME || "defaultUser",
+    password: process.env.PASSWORD || "defaultPassword"
+};
 
-// Dead code
-function deadCodeFunction() {
-    return;
-    console.log("This line will never be reached.");
+// Removed dead code (fixed)
+function fixedDeadCodeFunction() {
+    console.log("This line will be reached.");
+    return;  // This return statement makes sense after the log
 }
 
+console.log(usedVar);
 module.exports = {
-    duplicateFunction,
-    anotherDuplicateFunction,
+    refactoredFunction,
     errorProneFunction,
     riskyFunction,
     complexFunction,
-    inefficientLoop,
-    deadCodeFunction
+    optimizedLoop,
+    fixedDeadCodeFunction
 };

@@ -1,0 +1,21 @@
+{
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-undef": "error",
+      "no-throw-literal": "error",
+      "no-console": "warn",
+      "no-restricted-syntax": ["error", "WithStatement"],
+      "no-constant-condition": ["error", { "checkLoops": false }],
+      "no-useless-catch": "error",
+      "no-magic-numbers": ["warn", { "ignore": [0, 1] }]
+    }
+  }
+  

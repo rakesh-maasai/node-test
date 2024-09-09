@@ -106,3 +106,14 @@ fs.readFile('somefile.txt', 'utf8', (err, data) => {
     console.log(data);
     // Missing error handling
 });
+
+function checkValue(value) {
+  if (value > 0) {
+      return "Positive";
+  } else {
+      return "Non-positive"; // `else` is unnecessary
+  }
+}
+
+console.log(checkValue(5)); // Output: Positive
+console.log(checkValue(-5)); // Output: Non-positive
